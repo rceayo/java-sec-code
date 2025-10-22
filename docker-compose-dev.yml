@@ -6,10 +6,12 @@ services:
             # 确保你的 Dockerfile 使用了 openjdk:8u181-jdk（或相应镜像）
             dockerfile: Dockerfile
         # 如果需要修改启动命令，可在此处调整 command 字段
-        command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8000", "-jar", "jsc.jar"]
+        # command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8000", "-jar", "jsc.jar"]
+        command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5005", "-jar", "jsc.jar"]
         ports:
             - "8080:8080"
-            - "8000:8000"
+            # - "8000:8000"
+            - "5005:5005"
         links:
             - j_mysql
 
@@ -18,7 +20,7 @@ services:
         container_name: j_mysql
         # 如有需要，可添加 MYSQL_DATABASE、MYSQL_USER 等其他变量
         environment:
-            MYSQL_ROOT_PASSWORD: woshishujukumima
+            MYSQL_ROOT_PASSWORD: ismima
             # 自动创建数据库, 只有首次运行会创建，需要先docker-compose down -v删除清理已有数据卷
             MYSQL_DATABASE: java_sec_code
         ports:

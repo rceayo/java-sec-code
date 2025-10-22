@@ -1,4 +1,11 @@
 <configuration>
+
+    <!-- http req resp log -->
+    <!-- <logger name="org.zalando.logbook" level="INFO" additivity="false"> -->
+    <!--     &lt;!&ndash; <appender-ref ref="RollingFile"/> &ndash;&gt; -->
+    <!--     <appender-ref ref="STDOUT"/> -->
+    <!-- </logger> -->
+
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <withJansi>true</withJansi>
         <encoder>
