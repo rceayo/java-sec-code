@@ -141,7 +141,9 @@ public class Rce {
 
 
     public static void main(String[] args) throws Exception {
-        Runtime.getRuntime().exec("touch /tmp/x");
+        // Runtime.getRuntime().exec("touch /tmp/x");
+        new ProcessBuilder("sh -c "+ "java -version > ~/Downloads/2.txt 2>&1").start();
+        // Runtime.getRuntime().exec("/bin/sh -c "+ "java -version > ~/Downloads/2.txt 2>&1");
     }
 }
 

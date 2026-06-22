@@ -8,6 +8,8 @@ src/main/java/org/joychou/test/
 *.iml
 docker_jdk_build.sh
 
+.vscode/
+.history/
 
 # --- JAVA start --
 

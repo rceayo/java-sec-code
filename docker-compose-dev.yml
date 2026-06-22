@@ -5,6 +5,7 @@ services:
             context: .
             # 确保你的 Dockerfile 使用了 openjdk:8u181-jdk（或相应镜像）
             dockerfile: Dockerfile
+        # up容器前需要先进行mvn package进行打包jar
         # 如果需要修改启动命令，可在此处调整 command 字段
         # command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8000", "-jar", "jsc.jar"]
         command: ["java", "-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5005", "-jar", "jsc.jar"]

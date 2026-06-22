@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS `users`(
    `password` VARCHAR(255) NOT NULL,
    PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-INSERT INTO `users` VALUES (1, 'admin', 'admin123');
-INSERT INTO `users` VALUES (2, 'joychou', 'joychou123');
+INSERT INTO `users` VALUES (1, 'admin', 'ismima');
+INSERT INTO `users` VALUES (2, 'v', 'ismima');
